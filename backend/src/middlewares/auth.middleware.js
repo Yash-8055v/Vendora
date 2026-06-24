@@ -42,3 +42,14 @@ export const authorize = (allowedRoles) => (req, res, next) => {
   })
 }
 
+
+export const requireVerifiedEmail = (req, res, next) => {
+  if(!req.user.emailVerified) {
+    return res.status(403).json({
+      success: false,
+      message: "Email is not verified"
+    })
+  }
+
+  return next();
+}
