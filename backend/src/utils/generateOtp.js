@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 
 export const generateOTP = async () => {
-  const otp =  (Math.floor(100000 + Math.random() * 900000)).toString();
+  const otp = (Math.floor(100000 + Math.random() * 900000)).toString();
 
   const hashedOtp = await bcrypt.hash(otp, 10);
 
   return {otp, hashedOtp};
-  
 }
+
