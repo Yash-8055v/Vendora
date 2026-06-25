@@ -60,3 +60,61 @@ export const verifyEmailTemplate = (otp) => {
 </html>
 `;
 };
+
+
+export const resetPasswordTemplate = (otp) => {
+  return `<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8"/>
+</head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,sans-serif;">
+    
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden;">
+  
+  <div style="background-color: #111827; color: white; padding: 20px; text-align: center;">
+    <h2 style="margin: 0;">Vendora</h2>
+  </div>
+
+  <div style="padding: 30px;">
+    <h2>Password Reset Request</h2>
+
+    <p>Hello,</p>
+
+    <p>We received a request to reset your Vendora account password.</p>
+
+    <p>Use the following OTP to continue:</p>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <span style="
+        display: inline-block;
+        font-size: 30px;
+        letter-spacing: 8px;
+        font-weight: bold;
+        background: #f3f4f6;
+        padding: 15px 30px;
+        border-radius: 8px;
+      ">
+        ${otp}
+      </span>
+    </div>
+
+    <p>This OTP is valid for <strong>10 minutes</strong>.</p>
+
+    <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
+
+    <hr style="margin: 30px 0;">
+
+    <p style="font-size: 13px; color: #6b7280;">
+      For security reasons, never share this OTP with anyone.
+    </p>
+
+    <p>— Team Vendora</p>
+  </div>
+
+</div>
+</body>
+</html>
+  `
+}
