@@ -76,7 +76,17 @@ emailOtpHash: {
 emailOtpExpiresAt: {
   type: Date,
   default: null
-}
+},
+resetPasswordOtpHash: {
+  type: String,
+  default: null,
+  select: false
+},
+
+resetPasswordOtpExpiresAt: {
+  type: Date,
+  default: null,
+},
 }, {timestamps: true})
 
 
