@@ -1,7 +1,7 @@
 import express from 'express';
-import { getCurrentUserController, loginController, logOutController, refreshController, registerUserController } from './auth.controller.js';
-import { validate, validateToken } from '../../middlewares/validate.middleware.js';
-import {loginUserValidation, registerUserValidation, tokenValidation} from './auth.validation.js';
+import { forgotPasswordController, getCurrentUserController, loginController, logOutController, refreshController, registerUserController, resetPasswordController, sendVerificationOtpController, verifyEmailController, verifyResetPasswordOtpController } from './auth.controller.js';
+import { validate, validateOTP, validateToken } from '../../middlewares/validate.middleware.js';
+import {forgotPasswordValidation, loginUserValidation, otpValidation, registerUserValidation, resetPasswordValidation, tokenValidation, verifyResetPasswordOtpValidation} from './auth.validation.js';
 import { authenticate, authorize } from '../../middlewares/auth.middleware.js';
 
 
@@ -19,7 +19,15 @@ router.post('/logout', validateToken(tokenValidation), logOutController);
 router.get('/me', authenticate, getCurrentUserController);
 
 
-router.get('/send-verification-otp', authenticate);
+router.get('/send-verification-otp', authenticate, sendVerificationOtpController);
+
+router.post('/verify-email', authenticate, validateOTP(otpValidation), verifyEmailController);
+
+router.post('/forgot-password',validate(forgotPasswordValidation) ,forgotPasswordController);
+
+router.post('/verify-reset-password-otp',validate(verifyResetPasswordOtpValidation) ,verifyResetPasswordOtpController);
+
+router.post('/reset-password',validate(resetPasswordValidation) ,resetPasswordController);
 
 
 export default router;
