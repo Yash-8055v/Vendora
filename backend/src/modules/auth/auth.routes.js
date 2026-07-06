@@ -3,6 +3,8 @@ import { forgotPasswordController, getCurrentUserController, loginController, lo
 import { validate, validateOTP, validateToken } from '../../middlewares/validate.middleware.js';
 import {forgotPasswordValidation, loginUserValidation, otpValidation, registerUserValidation, resetPasswordValidation, tokenValidation, verifyResetPasswordOtpValidation} from './auth.validation.js';
 import { authenticate, authorize } from '../../middlewares/auth.middleware.js';
+import { googleLoginValidation } from './googleLoginValidation.js';
+import { googleLoginController } from './googleLoginController.js';
 
 
 const router = express.Router();
@@ -29,5 +31,6 @@ router.post('/verify-reset-password-otp',validate(verifyResetPasswordOtpValidati
 
 router.post('/reset-password',validate(resetPasswordValidation) ,resetPasswordController);
 
+router.post('/google', validate(googleLoginValidation), googleLoginController);
 
 export default router;
