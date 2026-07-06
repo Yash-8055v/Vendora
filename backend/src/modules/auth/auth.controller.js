@@ -12,6 +12,7 @@ import {
 } from "./auth.service.js";
 import User from "./auth.model.js";
 import { forgotPasswordValidation } from "./auth.validation.js";
+import { setRefreshTokenCookie } from "../../utils/setRefreshTokenCookie.js";
 
 export const registerUserController = async (req, res) => {
   const { name, email, password } = req.body;
@@ -52,11 +53,7 @@ export const loginController = async (req, res) => {
       password,
     );
 
-    res.cookie("refreshToken", refreshToken, {
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
-      secure: true,
-    });
+    setRefreshTokenCookie(res, refreshToken);
 
     return res.status(200).json({
       success: true,

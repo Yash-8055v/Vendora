@@ -40,6 +40,10 @@ export const loginService = async (email, password) => {
     throw new Error("Account is suspended");
   }
 
+  if (user.status === "deleted") {
+    throw new Error("Account not found");
+  }
+
   const isPasswordMatch = await bcrypt.compare(password, user.passwordHash);
 
   if (!isPasswordMatch) {
